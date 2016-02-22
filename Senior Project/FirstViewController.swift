@@ -2,7 +2,7 @@
 //  FirstViewController.swift
 //  Senior Project
 //
-//  Created by Varsha Roopreddy on 2/22/16.
+//  Created by Varsha Roopreddy & Anusha Praturu on 2/22/16.
 //  Copyright © 2016 Anusha Praturu & Varsha Roopreddy. All rights reserved.
 //
 
