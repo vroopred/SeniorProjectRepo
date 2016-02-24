@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  ExploreViewController.swift
 //  Senior Project
 //
 //  Created by Varsha Roopreddy & Anusha Praturu on 2/22/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class ExploreViewController: UIViewController {
 
    override func viewDidLoad() {
       super.viewDidLoad()
