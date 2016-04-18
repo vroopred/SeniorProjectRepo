@@ -12,6 +12,9 @@ class HomeViewController: UITableViewController{
 
    @IBOutlet var HomeTable: UITableView!
    
+ 
+    
+    
    var storyTitles: [String] = ["First Story", "Second Story", "Third Story"]
    
    var users: [String] = ["Varsha", "Anusha", "ThirdUser"]
@@ -19,7 +22,9 @@ class HomeViewController: UITableViewController{
    var stories: [String] = ["This is story 1 content. This is story 1 content. This is story 1 content. This is story       1 content. This is story 1 content. This is story 1 content. ",
                             "This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content.",
                             "This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content."]
-   
+    
+    var myRootRef = Firebase(url:"https://blazing-fire-252.firebaseio.com/")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,6 +50,8 @@ class HomeViewController: UITableViewController{
       cell.userName.text = self.users[indexPath.row]
       
       cell.storyText.text = self.stories[indexPath.row]
+    
+      myRootRef.setValue("test!!! writing to db.")
       
       return cell
    }
