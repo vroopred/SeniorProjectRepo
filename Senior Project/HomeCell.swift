@@ -10,8 +10,8 @@ import UIKit
 
 class HomeCell: UITableViewCell {
    @IBOutlet weak var storyTitle: UILabel!
-
    @IBOutlet weak var userName: UILabel!
+   @IBOutlet weak var location: UILabel!
    @IBOutlet weak var storyText: UITextView!
    
     override func awakeFromNib() {
