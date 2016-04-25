@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38E7B0751CCD726A00F0D9FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E7B0741CCD726A00F0D9FF /* LoginViewController.swift */; };
 		856052E71C8F81FB000B9291 /* Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856052E61C8F81FB000B9291 /* Pins.swift */; };
 		856052E91C8F88FC000B9291 /* VCMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856052E81C8F88FC000B9291 /* VCMapView.swift */; };
 		857BE7BF1C863FDE00D0C79F /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857BE7BE1C863FDE00D0C79F /* HomeCell.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		11912EAE8E25926F937DD2D0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		38AFA7921CC45451006BB75A /* Senior Project-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Senior Project-Bridging-Header.h"; sourceTree = "<group>"; };
+		38E7B0741CCD726A00F0D9FF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7A685E2AE091B2315EA06EE1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		856052E61C8F81FB000B9291 /* Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pins.swift; sourceTree = "<group>"; };
 		856052E81C8F88FC000B9291 /* VCMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCMapView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				85A687DD1C7E6F41000CC550 /* ProfileViewController.swift */,
 				857BE7BE1C863FDE00D0C79F /* HomeCell.swift */,
 				85FBAB911C88CBB3007C9D61 /* HomeViewController.swift */,
+				38E7B0741CCD726A00F0D9FF /* LoginViewController.swift */,
 				8593940A1C7B8B2800C23B7F /* Main.storyboard */,
 				856052E61C8F81FB000B9291 /* Pins.swift */,
 				856052E81C8F88FC000B9291 /* VCMapView.swift */,
@@ -367,6 +370,7 @@
 				85A687DC1C7E6E2C000CC550 /* MapViewController.swift in Sources */,
 				85FBAB921C88CBB3007C9D61 /* HomeViewController.swift in Sources */,
 				8588D5A51CC7047000CD2758 /* Story.swift in Sources */,
+				38E7B0751CCD726A00F0D9FF /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

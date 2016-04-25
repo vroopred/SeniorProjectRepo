@@ -1,29 +1,26 @@
 //
-//  ProfileViewController.swift
+//  LoginViewController.swift
 //  Senior Project
 //
-//  Created by Varsha Roopreddy on 2/24/16.
+//  Created by Anusha Praturu on 4/24/16.
 //  Copyright © 2016 Anusha Praturu & Varsha Roopreddy. All rights reserved.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class LoginViewController: UIViewController {
     
-    @IBAction func logout(sender: AnyObject) {
+    @IBAction func login(sender: AnyObject) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC") as! LoginViewController
+        let tabBarController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.window?.rootViewController = loginVC
+        appDelegate.window?.rootViewController = tabBarController
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-      let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
-      imageView.contentMode = .ScaleAspectFit
-      let image = UIImage(named: "Logo")
-      imageView.image = image
-      navigationItem.titleView = imageView
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

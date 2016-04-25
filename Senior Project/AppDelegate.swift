@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       UINavigationBar.appearance().barTintColor = UIColor.navBarGreen()
       UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
       
-
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC") as! LoginViewController
+      self.window?.rootViewController = loginVC
       return true
    }
 
