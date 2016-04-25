@@ -30,12 +30,17 @@ class MapViewController: UIViewController {
          manager.startUpdatingLocation()
       }
       
-      let pin = Pins(title: "King David Kalakaua",
-         locationName: "Waikiki Gateway Park",
+      let pin = Pins(title: "Rec Center",
+         locationName: "Cal Poly SLO",
          discipline: "Sculpture",
-         coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
+         coordinate: CLLocationCoordinate2D(latitude: 35.3050, longitude: -120.6625))
       
       map.addAnnotation(pin)
+      let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
+      imageView.contentMode = .ScaleAspectFit
+      let image = UIImage(named: "Logo")
+      imageView.image = image
+      navigationItem.titleView = imageView
     }
 
     override func didReceiveMemoryWarning() {

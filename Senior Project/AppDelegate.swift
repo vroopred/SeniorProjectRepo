@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension UIColor {
    static func navBarGreen() -> UIColor {
-      return UIColor(red: 67.0/255.0, green: 205.0/255.0, blue: 135.0/255.0, alpha: 1.0)
+      return UIColor(red: 81.0/255.0, green: 160.0/255.0, blue: 170.0/255.0, alpha: 1.0)
    }
 }
 

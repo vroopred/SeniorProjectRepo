@@ -34,7 +34,11 @@ class HomeViewController: UITableViewController{
             Story(title: "Third Story", author: "Justin B.", content: "This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. ", location: "San Francisco, CA")
          ]
             
-      
+      let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
+      imageView.contentMode = .ScaleAspectFit
+      let image = UIImage(named: "Logo")
+      imageView.image = image
+      navigationItem.titleView = imageView
         // Do any additional setup after loading the view.
       self.HomeTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
