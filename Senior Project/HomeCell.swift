@@ -13,6 +13,7 @@ class HomeCell: UITableViewCell {
    @IBOutlet weak var userName: UILabel!
    @IBOutlet weak var location: UILabel!
    @IBOutlet weak var storyText: UITextView!
+   @IBOutlet weak var timeAgoSinceDate: UILabel!
    
     override func awakeFromNib() {
         super.awakeFromNib()
