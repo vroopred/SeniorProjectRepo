@@ -18,10 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // Override point for customization after application launch.
       UINavigationBar.appearance().barTintColor = UIColor.navBarGreen()
       UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-      
-      let storyboard = UIStoryboard(name: "Main", bundle: nil)
-      let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC") as! LoginViewController
-      self.window?.rootViewController = loginVC
+
       return true
    }
 
