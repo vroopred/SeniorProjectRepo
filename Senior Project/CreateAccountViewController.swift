@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  CreateAccountViewController.swift
 //  Senior Project
 //
 //  Created by Anusha Praturu on 4/28/16.
@@ -8,28 +8,16 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
-
+class CreateAccountViewController: UIViewController {
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil && CURRENT_USER.authData != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tbController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.window?.rootViewController = tbController
-        }
 
         // Do any additional setup after loading the view.
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -46,24 +34,32 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func loginAction(sender: AnyObject) {
+    @IBAction func createAccountAction(sender: AnyObject) {
         let email = self.emailTextField.text
         let password = self.passwordTextField.text
         
         if email != "" && password != "" {
-            FIREBASE_REF.authUser(email, password: password, withCompletionBlock: { (error, authData) -> Void in
-                if(error == nil) {
-                    NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: "uid")
-                    print("logged in")
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tbController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    appDelegate.window?.rootViewController = tbController
+            FIREBASE_REF.createUser(email, password: password, withValueCompletionBlock: {(error, result) -> Void in
+                if error == nil {
+                    FIREBASE_REF.authUser(email, password: password, withCompletionBlock: {(error, authData) -> Void in
+                        if error == nil {
+                            NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: "uid")
+                            print("account created")
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let tbController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                            appDelegate.window?.rootViewController = tbController
+                        }
+                        else {
+                            print(error)
+                        }
+                    
+                    })
                 }
                 else {
                     print(error)
                 }
-            
             })
         }
         else {
@@ -75,6 +71,10 @@ class LoginViewController: UIViewController {
             
             self.presentViewController(alert, animated: true, completion: nil)
         }
+        
+    }
+    
+    @IBAction func cancelAction(sender: AnyObject) {
     }
 
 }

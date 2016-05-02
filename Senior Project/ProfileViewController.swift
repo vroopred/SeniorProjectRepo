@@ -9,14 +9,8 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
-    @IBAction func logout(sender: AnyObject) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC") as! LoginViewController
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.window?.rootViewController = loginVC
-    }
 
+    @IBOutlet weak var logoutButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
       let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
@@ -41,5 +35,16 @@ class ProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func logoutAction(sender: AnyObject) {
+        CURRENT_USER.unauth()
+        
+        NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "uid")
+        print("logged out")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC") as! LoginViewController
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window?.rootViewController = loginVC
+    }
+    
 
 }

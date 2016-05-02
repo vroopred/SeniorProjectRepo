@@ -24,8 +24,6 @@ class HomeViewController: UITableViewController{
                             "This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content."]
    var storyInfo: [Story] =*/
     
-    var myRootRef = Firebase(url:"https://blazing-fire-252.firebaseio.com/")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
          stories = [
