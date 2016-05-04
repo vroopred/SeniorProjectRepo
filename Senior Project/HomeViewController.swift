@@ -10,19 +10,9 @@ import UIKit
 
 class HomeViewController: UITableViewController{
 
+   @IBOutlet weak var refresh: UIRefreshControl!
    @IBOutlet var HomeTable: UITableView!
     var stories = [Story]()
- 
-    
-    
-   /*var storyTitles: [String] = ["First Story", "Second Story", "Third Story"]
-   
-   var users: [String] = ["Varsha", "Anusha", "ThirdUser"]
-   
-   var stories: [String] = ["This is story 1 content. This is story 1 content. This is story 1 content. This is story       1 content. This is story 1 content. This is story 1 content. ",
-                            "This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content.",
-                            "This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content."]
-   var storyInfo: [Story] =*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +29,14 @@ class HomeViewController: UITableViewController{
       navigationItem.titleView = imageView
         // Do any additional setup after loading the view.
       self.HomeTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-    }
+      refresh.addTarget(self, action: #selector(HomeViewController.enlargeTable), forControlEvents: UIControlEvents.ValueChanged)
+      tableView.addSubview(refresh)
+   }
+   
+   func enlargeTable() {
+      tableView.reloadData()
+      refresh.endRefreshing()
+   }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -62,11 +59,10 @@ class HomeViewController: UITableViewController{
       
       cell.location.text = self.stories[indexPath.row].location
       
-      cell.storyText.text = self.stories[indexPath.row].content
+      cell.storyText.text = self.stories[indexPath.row].content.trunc(100) + "..."
       
       cell.timeAgoSinceDate.text = timeAgo
     
-      myRootRef.setValue("test!!! writing to db.")
       
       return cell
    }
@@ -144,12 +140,20 @@ class HomeViewController: UITableViewController{
          } else {
             return "A minute ago"
          }
-      } else if (components.second >= 3) {
-         return "\(components.second) seconds ago"
       } else {
          return "Just now"
       }
       
    }
 
+}
+
+extension String {
+   func trunc(length: Int, trailing: String? = "...") -> String {
+      if self.characters.count > length {
+         return self.substringToIndex(self.startIndex.advancedBy(length)) + (trailing ?? "")
+      } else {
+         return self
+      }
+   }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class StoryDetailViewController: UIViewController {
 
+   
    @IBOutlet weak var storyTitle: UILabel!
    @IBOutlet weak var author: UILabel!
    @IBOutlet weak var location: UILabel!
@@ -23,12 +24,10 @@ class StoryDetailViewController: UIViewController {
    }*/
    
    func configureView() {
-            //storyTitle.text = detailStory?.title
+            storyTitle.text = detailStory?.title
             author.text = detailStory?.author
             location.text = detailStory?.location
             storyText.text = detailStory?.content
-            //candyImageView.image = UIImage(named: detailCandy.name)
-            //title = detailCandy.category
    }
    
    override func viewDidLoad() {
