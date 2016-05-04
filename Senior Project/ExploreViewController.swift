@@ -86,7 +86,7 @@ class ExploreViewController: UITableViewController {
       
       cell.location.text = story.location
       
-      cell.storyText.text = story.content
+      cell.storyText.text = story.content.trunc(100) 
       
       cell.timeAgoSinceDate.text = timeAgo
       
@@ -177,4 +177,5 @@ extension ExploreViewController : UISearchResultsUpdating {
       filterContentForSearchText(searchController.searchBar.text!)
    }
 }
+
 

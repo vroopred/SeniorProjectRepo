@@ -59,8 +59,7 @@ class HomeViewController: UITableViewController{
       
       cell.location.text = self.stories[indexPath.row].location
       
-      cell.storyText.text = self.stories[indexPath.row].content.trunc(100) + "..."
-      
+      cell.storyText.text = self.stories[indexPath.row].content.trunc(100)      
       cell.timeAgoSinceDate.text = timeAgo
     
       
