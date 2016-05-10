@@ -12,6 +12,8 @@ class CreateAccountViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
