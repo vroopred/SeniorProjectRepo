@@ -10,6 +10,8 @@
 		3827DC3F1CD280A200EB8F5B /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3827DC3E1CD280A200EB8F5B /* BaseService.swift */; };
 		3827DC411CD28E6F00EB8F5B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3827DC401CD28E6F00EB8F5B /* LoginViewController.swift */; };
 		3827DC431CD28E8A00EB8F5B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3827DC421CD28E8A00EB8F5B /* CreateAccountViewController.swift */; };
+		38C88CBD1CE0F744000C687D /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C88CBC1CE0F744000C687D /* ProfileCell.swift */; };
+		38C88CC31CE25857000C687D /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C88CC21CE25857000C687D /* AccountViewController.swift */; };
 		851E92C51CD836BC00F12DD2 /* ExploreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E92C41CD836BC00F12DD2 /* ExploreCell.swift */; };
 		856052E71C8F81FB000B9291 /* Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856052E61C8F81FB000B9291 /* Pins.swift */; };
 		857BE7BF1C863FDE00D0C79F /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857BE7BE1C863FDE00D0C79F /* HomeCell.swift */; };
@@ -23,7 +25,6 @@
 		8593941C1C7B8B2900C23B7F /* Senior_ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8593941B1C7B8B2900C23B7F /* Senior_ProjectTests.swift */; };
 		859394271C7B8B2900C23B7F /* Senior_ProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859394261C7B8B2900C23B7F /* Senior_ProjectUITests.swift */; };
 		85A687DC1C7E6E2C000CC550 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A687DB1C7E6E2C000CC550 /* MapViewController.swift */; };
-		85A687DE1C7E6F41000CC550 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A687DD1C7E6F41000CC550 /* ProfileViewController.swift */; };
 		85FBAB921C88CBB3007C9D61 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FBAB911C88CBB3007C9D61 /* HomeViewController.swift */; };
 		EF9B80665C7ED1E29C233084 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97399A7C0701B55EE0EE1DD2 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,8 @@
 		3827DC401CD28E6F00EB8F5B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3827DC421CD28E8A00EB8F5B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		38AFA7921CC45451006BB75A /* Senior Project-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Senior Project-Bridging-Header.h"; sourceTree = "<group>"; };
+		38C88CBC1CE0F744000C687D /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		38C88CC21CE25857000C687D /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		7A685E2AE091B2315EA06EE1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		851E92C41CD836BC00F12DD2 /* ExploreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreCell.swift; sourceTree = "<group>"; };
 		856052E61C8F81FB000B9291 /* Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pins.swift; sourceTree = "<group>"; };
@@ -71,7 +74,6 @@
 		859394261C7B8B2900C23B7F /* Senior_ProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Senior_ProjectUITests.swift; sourceTree = "<group>"; };
 		859394281C7B8B2900C23B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85A687DB1C7E6E2C000CC550 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		85A687DD1C7E6F41000CC550 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		85FBAB911C88CBB3007C9D61 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		97399A7C0701B55EE0EE1DD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -155,6 +157,8 @@
 				857BE7BE1C863FDE00D0C79F /* HomeCell.swift */,
 				859394081C7B8B2700C23B7F /* ExploreViewController.swift */,
 				85FBAB911C88CBB3007C9D61 /* HomeViewController.swift */,
+				857BE7BE1C863FDE00D0C79F /* HomeCell.swift */,
+				38C88CBC1CE0F744000C687D /* ProfileCell.swift */,
 				8593940A1C7B8B2800C23B7F /* Main.storyboard */,
 				856052E61C8F81FB000B9291 /* Pins.swift */,
 				38AFA7921CC45451006BB75A /* Senior Project-Bridging-Header.h */,
@@ -370,8 +374,9 @@
 				859394091C7B8B2700C23B7F /* ExploreViewController.swift in Sources */,
 				8588D5A31CC6EB6600CD2758 /* StoryDetailViewController.swift in Sources */,
 				859394051C7B8B2700C23B7F /* AppDelegate.swift in Sources */,
-				85A687DE1C7E6F41000CC550 /* ProfileViewController.swift in Sources */,
+				38C88CBD1CE0F744000C687D /* ProfileCell.swift in Sources */,
 				3827DC431CD28E8A00EB8F5B /* CreateAccountViewController.swift in Sources */,
+				38C88CC31CE25857000C687D /* AccountViewController.swift in Sources */,
 				856052E71C8F81FB000B9291 /* Pins.swift in Sources */,
 				857BE7BF1C863FDE00D0C79F /* HomeCell.swift in Sources */,
 				85A687DC1C7E6E2C000CC550 /* MapViewController.swift in Sources */,

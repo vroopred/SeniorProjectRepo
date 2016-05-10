@@ -98,7 +98,7 @@ class HomeViewController: UITableViewController{
       
       cell.location.text = self.stories[indexPath.row].location
       
-      cell.storyText.text = self.stories[indexPath.row].content.trunc(100)      
+      cell.storyText.text = self.stories[indexPath.row].content.trunc(100)
       cell.timeAgoSinceDate.text = timeAgo
     
       
@@ -187,11 +187,12 @@ class HomeViewController: UITableViewController{
 }
 
 extension String {
-   func trunc(length: Int, trailing: String? = "...") -> String {
-      if self.characters.count > length {
-         return self.substringToIndex(self.startIndex.advancedBy(length)) + (trailing ?? "")
-      } else {
-         return self
-      }
-   }
+    func trunc(length: Int, trailing: String? = "...") -> String {
+        if self.characters.count > length {
+            return self.substringToIndex(self.startIndex.advancedBy(length)) + (trailing ?? "")
+        } else {
+            return self
+        }
+    }
 }
+
