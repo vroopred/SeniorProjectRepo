@@ -13,6 +13,7 @@
 		38C88CBD1CE0F744000C687D /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C88CBC1CE0F744000C687D /* ProfileCell.swift */; };
 		38C88CC31CE25857000C687D /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C88CC21CE25857000C687D /* AccountViewController.swift */; };
 		851E92C51CD836BC00F12DD2 /* ExploreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E92C41CD836BC00F12DD2 /* ExploreCell.swift */; };
+		85303C471CE2868100AB69E3 /* AddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85303C461CE2868100AB69E3 /* AddStoryViewController.swift */; };
 		856052E71C8F81FB000B9291 /* Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856052E61C8F81FB000B9291 /* Pins.swift */; };
 		857BE7BF1C863FDE00D0C79F /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857BE7BE1C863FDE00D0C79F /* HomeCell.swift */; };
 		8588D5A31CC6EB6600CD2758 /* StoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588D5A21CC6EB6600CD2758 /* StoryDetailViewController.swift */; };
@@ -56,6 +57,7 @@
 		38C88CC21CE25857000C687D /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		7A685E2AE091B2315EA06EE1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		851E92C41CD836BC00F12DD2 /* ExploreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreCell.swift; sourceTree = "<group>"; };
+		85303C461CE2868100AB69E3 /* AddStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStoryViewController.swift; sourceTree = "<group>"; };
 		856052E61C8F81FB000B9291 /* Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pins.swift; sourceTree = "<group>"; };
 		857BE7BE1C863FDE00D0C79F /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		8588D5A21CC6EB6600CD2758 /* StoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryDetailViewController.swift; sourceTree = "<group>"; };
@@ -154,7 +156,6 @@
 				859394121C7B8B2800C23B7F /* Info.plist */,
 				85A687DB1C7E6E2C000CC550 /* MapViewController.swift */,
 				38C88CC21CE25857000C687D /* AccountViewController.swift */,
-				85FBAB911C88CBB3007C9D61 /* HomeViewController.swift */,
 				857BE7BE1C863FDE00D0C79F /* HomeCell.swift */,
 				859394081C7B8B2700C23B7F /* ExploreViewController.swift */,
 				85FBAB911C88CBB3007C9D61 /* HomeViewController.swift */,
@@ -166,6 +167,7 @@
 				8588D5A41CC7047000CD2758 /* Story.swift */,
 				3827DC3E1CD280A200EB8F5B /* BaseService.swift */,
 				851E92C41CD836BC00F12DD2 /* ExploreCell.swift */,
+				85303C461CE2868100AB69E3 /* AddStoryViewController.swift */,
 			);
 			path = "Senior Project";
 			sourceTree = "<group>";
@@ -377,6 +379,7 @@
 				38C88CBD1CE0F744000C687D /* ProfileCell.swift in Sources */,
 				3827DC431CD28E8A00EB8F5B /* CreateAccountViewController.swift in Sources */,
 				38C88CC31CE25857000C687D /* AccountViewController.swift in Sources */,
+				85303C471CE2868100AB69E3 /* AddStoryViewController.swift in Sources */,
 				856052E71C8F81FB000B9291 /* Pins.swift in Sources */,
 				857BE7BF1C863FDE00D0C79F /* HomeCell.swift in Sources */,
 				85A687DC1C7E6E2C000CC550 /* MapViewController.swift in Sources */,
