@@ -54,7 +54,15 @@ class LoginViewController: UIViewController {
             FIREBASE_REF.authUser(email, password: password, withCompletionBlock: { (error, authData) -> Void in
                 if(error == nil) {
                     NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: "uid")
-                    print("logged in")
+                    
+                    let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/User/" + authData.uid)
+
+                    ref.observeEventType(.Value, withBlock: { snapshot in
+                        curUser = User(snapshot: snapshot)
+                        }, withCancelBlock: { error in
+                            print(error.description)
+                    })
+                    
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let tbController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

@@ -46,6 +46,22 @@ class CreateAccountViewController: UIViewController {
                     FIREBASE_REF.authUser(email, password: password, withCompletionBlock: {(error, authData) -> Void in
                         if error == nil {
                             NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: "uid")
+                            
+                            let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
+                            let user =  User(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!)
+                            
+                            let userRef = ref.childByAppendingPath(authData.uid)
+                            
+                            userRef.setValue(user.toAnyObject())
+                            
+                            let ref1 = Firebase(url : "https://blazing-fire-252.firebaseio.com/User/" + authData.uid)
+                            
+                            ref1.observeEventType(.Value, withBlock: { snapshot in
+                                curUser = User(snapshot: snapshot)
+                                }, withCancelBlock: { error in
+                                    print(error.description)
+                            })
+                            
                             print("account created")
                             self.dismissViewControllerAnimated(true, completion: nil)
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
