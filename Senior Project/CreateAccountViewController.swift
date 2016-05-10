@@ -37,6 +37,8 @@ class CreateAccountViewController: UIViewController {
     }
     */
     @IBAction func createAccountAction(sender: AnyObject) {
+        let fn = self.firstNameTextField.text
+        let ln = self.lastNameTextField.text
         let email = self.emailTextField.text
         let password = self.passwordTextField.text
         
@@ -46,7 +48,16 @@ class CreateAccountViewController: UIViewController {
                     FIREBASE_REF.authUser(email, password: password, withCompletionBlock: {(error, authData) -> Void in
                         if error == nil {
                             NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: "uid")
+                            
+                            let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
+                            curUser =  User(firstName: fn!, lastName: ln!)
+                            
+                            let userRef = ref.childByAppendingPath(authData.uid)
+                            
+                            userRef.setValue(curUser.toAnyObject())
+                            
                             print("account created")
+                            print(curUser.firstName)
                             self.dismissViewControllerAnimated(true, completion: nil)
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
                             let tbController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
