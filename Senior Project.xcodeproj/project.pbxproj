@@ -170,6 +170,7 @@
 				3827DC3E1CD280A200EB8F5B /* BaseService.swift */,
 				851E92C41CD836BC00F12DD2 /* ExploreCell.swift */,
 				85303C461CE2868100AB69E3 /* AddStoryViewController.swift */,
+				38C88CC41CE2794D000C687D /* User.swift */,
 			);
 			path = "Senior Project";
 			sourceTree = "<group>";

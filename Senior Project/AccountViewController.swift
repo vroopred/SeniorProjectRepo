@@ -10,6 +10,7 @@ import UIKit
 
 
 class AccountViewController: UITableViewController {
+   @IBOutlet weak var userName: UILabel!
     @IBOutlet var accountTable: UITableView!
     @IBOutlet weak var logoutButton: UIButton!
     
@@ -31,7 +32,10 @@ class AccountViewController: UITableViewController {
         let image = UIImage(named: "Logo")
         imageView.image = image
         navigationItem.titleView = imageView
-        
+        print(userName.text)
+        print(curUser.firstName + " " + curUser.lastName)
+        userName.text = curUser.firstName + " " + curUser.lastName
+      
         self.accountTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     

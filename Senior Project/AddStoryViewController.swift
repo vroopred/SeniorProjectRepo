@@ -28,7 +28,7 @@ class AddStoryViewController: UIViewController {
    
    @IBAction func createStory(sender: AnyObject) {
       let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/Story")
-      let story =  Story(title: storyTitle.text!, author: "jo", content: storyContent.text!, location: location.text!, date: NSDate())
+      let story =  Story(title: storyTitle.text!, author: curUser.firstName + " " + curUser.lastName, content: storyContent.text!, location: location.text!, date: NSDate())
       
       let storyRef = ref.childByAppendingPath(story.title)
       
