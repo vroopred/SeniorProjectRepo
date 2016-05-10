@@ -9,6 +9,7 @@
 import UIKit
 
 class HomeCell: UITableViewCell {
+   var toggleState = 1
    @IBOutlet weak var storyTitle: UILabel!
    @IBOutlet weak var userName: UILabel!
    @IBOutlet weak var location: UILabel!

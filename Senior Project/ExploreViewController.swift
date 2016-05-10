@@ -33,11 +33,11 @@ class ExploreViewController: UITableViewController {
       navigationItem.titleView = imageView
       //self.automaticallyAdjustsScrollViewInsets = false
       
-      stories = [
-         Story(title: "First Story", author: "Varsha R.", content: "This is story 1 content. This is story 1 content. This is story 1 content. This is story       1 content. This is story 1 content. This is story 1 content. ", location: "Fremont, CA", date: NSDate()),
+      /*stories = [
+         Story(title: "First Story", author: "Varsha R.", content: "This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content.", location: "Fremont, CA", date: NSDate()),
          Story(title: "Second Story", author: "Anusha P.", content: "This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. ", location: "San Luis Obispo, CA", date: NSDate()),
          Story(title: "Third Story", author: "Justin B.", content: "This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. ", location: "San Francisco, CA", date: NSDate())
-      ]
+      ]*/
       
       self.ExploreTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
       
@@ -57,6 +57,30 @@ class ExploreViewController: UITableViewController {
    override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
       // Dispose of any resources that can be recreated.
+   }
+   
+   override func viewDidAppear(animated: Bool) {
+      super.viewDidAppear(animated)
+      let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/Story")
+      
+      // 1
+      ref.observeEventType(.Value, withBlock: { snapshot in
+         
+         // 2
+         var newItems = [Story]()
+         
+         // 3
+         for item in snapshot.children {
+            
+            // 4
+            let story = Story(snapshot: item as! FDataSnapshot)
+            newItems.append(story)
+         }
+         
+         // 5
+         self.stories = newItems
+         self.tableView.reloadData()
+      })
    }
    
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

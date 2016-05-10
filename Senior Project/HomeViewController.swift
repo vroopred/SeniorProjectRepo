@@ -16,11 +16,11 @@ class HomeViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         stories = [
-            Story(title: "First Story", author: "Varsha R.", content: "This is story 1 content. This is story 1 content. This is story 1 content. This is story       1 content. This is story 1 content. This is story 1 content. ", location: "Fremont, CA", date: NSDate()),
+         /*stories = [
+            Story(title: "First Story", author: "Varsha R.", content: "This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content.", location: "Fremont, CA", date: NSDate()),
             Story(title: "Second Story", author: "Anusha P.", content: "This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. ", location: "San Luis Obispo, CA", date: NSDate()),
             Story(title: "Third Story", author: "Justin B.", content: "This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. ", location: "San Francisco, CA", date: NSDate())
-         ]
+         ]*/
             
       let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
       imageView.contentMode = .ScaleAspectFit
@@ -31,7 +31,18 @@ class HomeViewController: UITableViewController{
       self.HomeTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
       refresh.addTarget(self, action: #selector(HomeViewController.enlargeTable), forControlEvents: UIControlEvents.ValueChanged)
       tableView.addSubview(refresh)
+      //addStory()
    }
+   
+   func addStory() {
+      let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/Story")
+      let story =  Story(title: "Third Story", author: "Justin B.", content: "This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. ", location: "San Francisco, CA", date: NSDate())
+      
+      let storyRef = ref.childByAppendingPath(story.title)
+      
+      storyRef.setValue(story.toAnyObject())
+   }
+   
    
    func enlargeTable() {
       tableView.reloadData()
@@ -43,6 +54,30 @@ class HomeViewController: UITableViewController{
         // Dispose of any resources that can be recreated.
     }
    
+   override func viewDidAppear(animated: Bool) {
+      super.viewDidAppear(animated)
+      let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/Story")
+      
+      // 1
+      ref.observeEventType(.Value, withBlock: { snapshot in
+         
+         // 2
+         var newItems = [Story]()
+         
+         // 3
+         for item in snapshot.children {
+            
+            // 4
+            let story = Story(snapshot: item as! FDataSnapshot)
+            newItems.append(story)
+         }
+         
+         // 5
+         self.stories = newItems
+         self.tableView.reloadData()
+      })
+   }
+   
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return self.stories.count;
    }
@@ -50,6 +85,10 @@ class HomeViewController: UITableViewController{
    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       
       let cell:HomeCell = self.tableView.dequeueReusableCellWithIdentifier("HomeCell") as! HomeCell
+      
+      //let interval = self.stories[indexPath.row].date.timeIntervalSince1970
+      //let date = NSDate(timeIntervalSince1970: interval)
+      //let d = self.stories[indexPath.row].date
       
       let timeAgo:String = timeAgoSinceDate(self.stories[indexPath.row].date, numericDates: true)
       

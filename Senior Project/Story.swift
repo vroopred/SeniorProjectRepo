@@ -22,4 +22,24 @@ class Story {
       self.location = location
       self.date = date
    }
+   
+   init(snapshot: FDataSnapshot) {
+      title = snapshot.value["title"] as! String
+      author = snapshot.value["author"] as! String
+      content = snapshot.value["content"] as! String
+      location = snapshot.value["location"] as! String
+      let dateInterval = snapshot.value["date"] as! String
+      let interval = NSTimeInterval((dateInterval as NSString).floatValue)
+      date = NSDate(timeIntervalSince1970: interval)
+   }
+   
+   func toAnyObject() -> NSDictionary {
+      return [
+         "title": title,
+         "author": author,
+         "content": content,
+         "location": location,
+         "date" : NSString(format: "%f", date.timeIntervalSince1970)
+      ]
+   }
 }
