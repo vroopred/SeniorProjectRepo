@@ -16,11 +16,6 @@ class HomeViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         /*stories = [
-            Story(title: "First Story", author: "Varsha R.", content: "This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content. This is story 1 content.", location: "Fremont, CA", date: NSDate()),
-            Story(title: "Second Story", author: "Anusha P.", content: "This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. ", location: "San Luis Obispo, CA", date: NSDate()),
-            Story(title: "Third Story", author: "Justin B.", content: "This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. ", location: "San Francisco, CA", date: NSDate())
-         ]*/
             
       let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
       imageView.contentMode = .ScaleAspectFit
@@ -31,18 +26,7 @@ class HomeViewController: UITableViewController{
       self.HomeTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
       refresh.addTarget(self, action: #selector(HomeViewController.enlargeTable), forControlEvents: UIControlEvents.ValueChanged)
       tableView.addSubview(refresh)
-      //addStory()
    }
-   
-   func addStory() {
-      let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/Story")
-      let story =  Story(title: "Third Story", author: "Justin B.", content: "This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. ", location: "San Francisco, CA", date: NSDate())
-      
-      let storyRef = ref.childByAppendingPath(story.title)
-      
-      storyRef.setValue(story.toAnyObject())
-   }
-   
    
    func enlargeTable() {
       tableView.reloadData()
@@ -73,7 +57,10 @@ class HomeViewController: UITableViewController{
          }
          
          // 5
+         newItems.sortInPlace({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
+         
          self.stories = newItems
+         
          self.tableView.reloadData()
       })
    }

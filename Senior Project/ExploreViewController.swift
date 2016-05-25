@@ -18,8 +18,15 @@ class ExploreViewController: UITableViewController {
    var filteredStories = [Story]();
    let searchController = UISearchController(searchResultsController: nil)
    
-   func filterContentForSearchText(searchText : String, scope: String = "All") {
+   func filterContentForSearchText(searchText : String, scope: String) {
+      
       filteredStories = stories.filter{story in
+         if(scope == "Author") {
+            return story.author.lowercaseString.containsString(searchText.lowercaseString)
+         }
+         else if(scope == "Location") {
+            return story.location.lowercaseString.containsString(searchText.lowercaseString)
+         }
          return story.title.lowercaseString.containsString(searchText.lowercaseString)}
       tableView.reloadData()
    }
@@ -31,7 +38,8 @@ class ExploreViewController: UITableViewController {
       let image = UIImage(named: "Logo")
       imageView.image = image
       navigationItem.titleView = imageView
-      //self.automaticallyAdjustsScrollViewInsets = false
+      searchController.searchBar.scopeButtonTitles = ["Top","Author", "Location"]
+      searchController.searchBar.delegate = self
       
       self.ExploreTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
       
@@ -192,7 +200,14 @@ class ExploreViewController: UITableViewController {
 }
 extension ExploreViewController : UISearchResultsUpdating {
    func updateSearchResultsForSearchController(searchController : UISearchController) {
-      filterContentForSearchText(searchController.searchBar.text!)
+      let searchBar = searchController.searchBar
+      let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+      filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+   }
+}
+extension ExploreViewController: UISearchBarDelegate {
+   func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+      filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
    }
 }
 
