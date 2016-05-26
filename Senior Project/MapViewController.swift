@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController {
-
+    
    @IBOutlet var map: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,30 +19,26 @@ class MapViewController: UIViewController {
            //map.showsUserLocation = true
       map.delegate = self
       map.showsUserLocation = true
-      let manager = CLLocationManager()
-      /*if CLLocationManager.authorizationStatus() == .NotDetermined {
-         manager.requestWhenInUseAuthorization()
-      }*/
-      /*else {
-         map.showsUserLocation = true
-      }*/
-      let status = CLLocationManager.authorizationStatus()
-      if status == CLAuthorizationStatus.NotDetermined {
-         manager.requestWhenInUseAuthorization()
-      } else if  status != .Denied {
-         manager.startUpdatingLocation()
-      }
-      if CLLocationManager.locationServicesEnabled() {
-         manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-         manager.startUpdatingLocation()
-      }
-      
-      let pin = Pins(title: "Rec Center",
-         locationName: "Cal Poly SLO",
-         discipline: "Sculpture",
-         coordinate: CLLocationCoordinate2D(latitude: 35.3050, longitude: -120.6625))
-      
-      map.addAnnotation(pin)
+        
+        let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/Story")
+        
+ 
+        ref.observeEventType(.Value, withBlock: { snapshot in
+  
+            for item in snapshot.children {
+                
+                // 4
+                let s = Story(snapshot: item as! FDataSnapshot)
+                let pin = Pins(title: s.location,
+                    locationName: s.address,
+                    discipline: "Sculpture",
+                    coordinate: CLLocationCoordinate2D(latitude: s.latitude,longitude: s.longitude))
+                self.map.addAnnotation(pin)
+
+            }
+
+        })
+        
       let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
       imageView.contentMode = .ScaleAspectFit
       let image = UIImage(named: "Logo")

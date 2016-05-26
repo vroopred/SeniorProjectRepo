@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // Override point for customization after application launch.
       UINavigationBar.appearance().barTintColor = UIColor.navBarGreen()
       UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+    
+      GMSServices.provideAPIKey("AIzaSyC4YruFf4Atsl__JmsMSVkMZ5DyZg9gTaA")
 
       return true
    }

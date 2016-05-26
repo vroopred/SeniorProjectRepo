@@ -8,27 +8,54 @@
 
 import Foundation
 import UIKit
+import GoogleMaps
 
 class AddStoryViewController: UIViewController {
 
    @IBOutlet weak var storyTitle: UITextField!
-   @IBOutlet weak var author: UITextField!
    @IBOutlet weak var location: UITextField!
    @IBOutlet weak var storyContent: UITextView!
+    
+   var resultsViewController: GMSAutocompleteResultsViewController?
+   var searchController: UISearchController?
+   var resultView: UITextView?
+   var locString: NSString = ""
+   var locCoord: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 35.3050, longitude: -120.6625)
+   var locAdd: NSString = ""
+    
    override func viewDidLoad() {
       super.viewDidLoad()
       
       // Do any additional setup after loading the view.
+    
+      resultsViewController = GMSAutocompleteResultsViewController()
+      resultsViewController?.delegate = self
+    
+      searchController = UISearchController(searchResultsController: resultsViewController)
+      searchController?.searchResultsUpdater = resultsViewController
+    
+      // Put the search bar in the navigation bar.
+      searchController?.searchBar.sizeToFit()
+      self.navigationItem.titleView = searchController?.searchBar
+    
+      // When UISearchController presents the results view, present it in
+      // this view controller, not one further up the chain.
+      self.definesPresentationContext = true
+    
+      // Prevent the navigation bar from being hidden when searching.
+      searchController?.hidesNavigationBarDuringPresentation = false
    }
 
    override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
       // Dispose of any resources that can be recreated.
    }
+    
+    
    
    @IBAction func createStory(sender: AnyObject) {
       let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/Story")
-      let story =  Story(title: storyTitle.text!, author: curUser.firstName + " " + curUser.lastName, content: storyContent.text!, location: location.text!, date: NSDate())
+    let story =  Story(title: storyTitle.text!, author: curUser.firstName + " " + curUser.lastName, content: storyContent.text!, location: locString as String, longitude: locCoord.longitude, latitude: locCoord.latitude, address: locAdd as String, date: NSDate())
       let ref1 = ref.childByAutoId()
       ref1.setValue(story.toAnyObject())
       
@@ -40,4 +67,34 @@ class AddStoryViewController: UIViewController {
       let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
       appDelegate.window?.rootViewController = tbController
    }
+}
+
+extension AddStoryViewController: GMSAutocompleteResultsViewControllerDelegate {
+    func resultsController(resultsController: GMSAutocompleteResultsViewController,
+                           didAutocompleteWithPlace place: GMSPlace) {
+        searchController?.active = false
+        // Do something with the selected place.
+        print("Place name: ", place.name)
+        print("Place address: ", place.formattedAddress)
+        print("Place ID: ", place.placeID)
+        location.text = place.name
+        locString = place.name
+        locCoord = place.coordinate
+        locAdd = place.formattedAddress!
+    }
+    
+    func resultsController(resultsController: GMSAutocompleteResultsViewController,
+                           didFailAutocompleteWithError error: NSError){
+        // TODO: handle the error.
+        print("Error: ", error.description)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictionsForResultsController(resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictionsForResultsController(resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    }
 }
