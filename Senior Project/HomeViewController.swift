@@ -73,10 +73,6 @@ class HomeViewController: UITableViewController{
       
       let cell:HomeCell = self.tableView.dequeueReusableCellWithIdentifier("HomeCell") as! HomeCell
       
-      //let interval = self.stories[indexPath.row].date.timeIntervalSince1970
-      //let date = NSDate(timeIntervalSince1970: interval)
-      //let d = self.stories[indexPath.row].date
-      
       let timeAgo:String = timeAgoSinceDate(self.stories[indexPath.row].date, numericDates: true)
       
       cell.storyTitle.text = self.stories[indexPath.row].title

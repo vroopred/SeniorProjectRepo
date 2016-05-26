@@ -16,10 +16,84 @@ class StoryDetailViewController: UIViewController {
    @IBOutlet weak var location: UILabel!
    @IBOutlet weak var storyText: UITextView!
    @IBOutlet weak var likeButton: UIButton!
+   @IBOutlet weak var followButton: UIButton!
   
    var toggleState = 1
-   
+   var followToggleState = 1
+   var authorKey = ""
    var detailStory: Story?
+   
+   func incrementFollowers(username: String) {
+      //increment the following count of the current user
+      var numFollowing = 0
+      var ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
+      ref = ref.childByAppendingPath(CURRENT_USER.authData.uid);
+      ref.observeEventType(.Value, withBlock: { snapshot in
+         numFollowing = snapshot.value["numFollowing"] as! Int
+         }, withCancelBlock: { error in
+            print(error.description)
+      })
+      let ref2 = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
+      ref = ref.childByAppendingPath(CURRENT_USER.authData.uid);
+      numFollowing = numFollowing+1
+      let following = ["numFollowing": numFollowing]
+      ref2.updateChildValues(following)
+      
+      //increment the follower count of the story author
+      /*var numFollowers = 0
+      var ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
+      ref = ref.childByAppendingPath(CURRENT_USER.authData.uid);
+      ref.observeEventType(.Value, withBlock: { snapshot in
+         numFollowers = snapshot.value["numFollowing"] as! Int
+         }, withCancelBlock: { error in
+            print(error.description)
+      })
+      var ref2 = Firebase(url : "https://blazing-fire-252.firebaseio.com/Story")
+      ref2 = ref2.childByAppendingPath(title);
+      numFollowers = numFollowers+1
+      let followers = ["numFollowers": numFollowers]
+      ref2.updateChildValues(followers)
+      getKeyOfUser(username)*/
+   }
+   
+   func decrementFollowers(username: String) {
+      //decrement the followers count of the user of the story
+      var numFollowing = 0
+      var ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
+      ref = ref.childByAppendingPath(CURRENT_USER.authData.uid);
+      ref.observeEventType(.Value, withBlock: { snapshot in
+         numFollowing = snapshot.value["numFollowing"] as! Int
+         }, withCancelBlock: { error in
+            print(error.description)
+      })
+      let ref2 = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
+      ref = ref.childByAppendingPath(CURRENT_USER.authData.uid);
+      numFollowing = numFollowing-1
+      let following = ["numFollowing": numFollowing]
+      ref2.updateChildValues(following)
+      //decrement the following count of the current user
+   }
+   
+   func setInitialFollowButton(username: String) {
+      var ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
+      ref = ref.childByAppendingPath(CURRENT_USER.authData.uid);
+      ref = ref.childByAppendingPath("following")
+      ref.observeEventType(.Value, withBlock: { snapshot in
+         if(snapshot.hasChild(username)) {
+            let isFollowing = snapshot.value[username] as! Bool
+            if(isFollowing == true) {
+               self.followButton.setTitle("Following", forState: UIControlState.Normal)
+               self.followToggleState = 2
+            }
+            else {
+               self.followButton.setTitle("Follow", forState: UIControlState.Normal)
+               self.followToggleState = 1
+            }
+         }
+         }, withCancelBlock: { error in
+            print(error.description)
+      })
+   }
    
    func incrementLikes(title: String) {
       var numLikes = 0
@@ -80,11 +154,38 @@ class StoryDetailViewController: UIViewController {
       }
       
    }
+   
+   @IBAction func followButton(sender: AnyObject) {
+      if followToggleState == 1 {
+         /*Code*/
+         followToggleState = 2
+         var ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
+         ref = ref.childByAppendingPath(CURRENT_USER.authData.uid);
+         let followRef = ref.childByAppendingPath("following")
+         
+         let followStruct = [self.author.text!: true]
+         
+         followRef.updateChildValues(followStruct)
+         incrementFollowers(self.author.text!)
+         
+         self.followButton.setTitle("Following", forState: UIControlState.Normal)
+      } else {
+         /*Code*/
+         followToggleState = 1
+         var ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
+         ref = ref.childByAppendingPath(CURRENT_USER.authData.uid);
+         ref = ref.childByAppendingPath("following")
+         ref = ref.childByAppendingPath(self.author.text!)
+         ref.removeValue()
+         decrementFollowers(self.author.text!)
+        self.followButton.setTitle("Follow", forState: UIControlState.Normal)
+      }
+   }
    func configureView() {
-      storyTitle.text = detailStory?.title
-      author.text = detailStory?.author
-      location.text = detailStory?.location
-      storyText.text = detailStory?.content
+      storyTitle.text = detailStory!.title
+      author.text = detailStory!.author
+      location.text = detailStory!.location
+      storyText.text = detailStory!.content
    }
    
    override func viewDidLoad() {
@@ -102,6 +203,7 @@ class StoryDetailViewController: UIViewController {
       var newFrame = storyText.frame
       newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
       storyText.frame = newFrame;
+      
       var ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
       ref = ref.childByAppendingPath(CURRENT_USER.authData.uid);
       ref = ref.childByAppendingPath("likes");
@@ -118,7 +220,26 @@ class StoryDetailViewController: UIViewController {
          }, withCancelBlock: { error in
             print(error.description)
       })
+
+      
+      setInitialFollowButton(self.author.text!)
    }
+   
+   /*func getKeyOfUser(fullName: String){
+      let fullNameArr = fullName.characters.split{$0 == " "}.map(String.init)
+      let firstName: String = fullNameArr[0]
+      let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/User")
+      ref.observeEventType(.Value, withBlock: { snapshot in
+         for item in snapshot.children {
+            print(item.value["firstname"])
+            if(item.value["firstname"] as! String == firstName) {
+               self.authorKey = item.key
+            }
+         }
+         }, withCancelBlock: { error in
+            print(error.description)
+      })
+   }*/
    
    /*override func viewDidAppear(animated: Bool) {
       let fixedWidth = storyText.frame.size.width
