@@ -11,7 +11,8 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController {
-
+   //var stories = [Story]()
+    
    @IBOutlet var map: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,46 @@ class MapViewController: UIViewController {
       /*else {
          map.showsUserLocation = true
       }*/
+        
+        let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/Story")
+        
+        // 1
+        ref.observeEventType(.Value, withBlock: { snapshot in
+            
+            // 2
+            //var newItems = [Story]()
+            
+            // 3
+            for item in snapshot.children {
+                
+                // 4
+                let s = Story(snapshot: item as! FDataSnapshot)
+                let pin = Pins(title: s.location,
+                    locationName: s.address,
+                    discipline: "Sculpture",
+                    coordinate: CLLocationCoordinate2D(latitude: s.latitude,longitude: s.longitude))
+                self.map.addAnnotation(pin)
+
+                //newItems.append(story)
+            }
+            // 5
+            
+            //self.stories = newItems
+        })
+        
+//
+//        for s in self.stories {
+//            print(s.location)
+//            print(s.address)
+//            print(s.longitude)
+//            print(s.latitude)
+//            let pin = Pins(title: s.location,
+//                           locationName: s.address,
+//                           discipline: "Sculpture",
+//                           coordinate: CLLocationCoordinate2D(latitude: s.latitude,longitude: s.longitude))
+//            map.addAnnotation(pin)
+//        }
+        
       let status = CLLocationManager.authorizationStatus()
       if status == CLAuthorizationStatus.NotDetermined {
          manager.requestWhenInUseAuthorization()
@@ -36,13 +77,24 @@ class MapViewController: UIViewController {
          manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
          manager.startUpdatingLocation()
       }
+        
+
+
       
       let pin = Pins(title: "Rec Center",
          locationName: "Cal Poly SLO",
          discipline: "Sculpture",
          coordinate: CLLocationCoordinate2D(latitude: 35.3050, longitude: -120.6625))
+        
+      let pin1 = Pins(title: "New Pin",
+                      locationName: "Cal Poly SLO",
+                      discipline: "Sculpture",
+                      coordinate: CLLocationCoordinate2D(latitude: 30.3050, longitude: -125.6625))
       
       map.addAnnotation(pin)
+      map.addAnnotation(pin1)
+        
+        
       let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
       imageView.contentMode = .ScaleAspectFit
       let image = UIImage(named: "Logo")

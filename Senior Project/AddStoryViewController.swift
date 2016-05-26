@@ -20,7 +20,8 @@ class AddStoryViewController: UIViewController {
    var searchController: UISearchController?
    var resultView: UITextView?
    var locString: NSString = ""
-    var locCoord: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 35.3050, longitude: -120.6625)
+   var locCoord: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 35.3050, longitude: -120.6625)
+   var locAdd: NSString = ""
     
    override func viewDidLoad() {
       super.viewDidLoad()
@@ -54,7 +55,7 @@ class AddStoryViewController: UIViewController {
    
    @IBAction func createStory(sender: AnyObject) {
       let ref = Firebase(url : "https://blazing-fire-252.firebaseio.com/Story")
-    let story =  Story(title: storyTitle.text!, author: curUser.firstName + " " + curUser.lastName, content: storyContent.text!, location: locString as String, longitude: locCoord.longitude, latitude: locCoord.latitude, date: NSDate())
+    let story =  Story(title: storyTitle.text!, author: curUser.firstName + " " + curUser.lastName, content: storyContent.text!, location: locString as String, longitude: locCoord.longitude, latitude: locCoord.latitude, address: locAdd as String, date: NSDate())
       let ref1 = ref.childByAutoId()
       ref1.setValue(story.toAnyObject())
       
@@ -79,6 +80,7 @@ extension AddStoryViewController: GMSAutocompleteResultsViewControllerDelegate {
         location.text = place.name
         locString = place.name
         locCoord = place.coordinate
+        locAdd = place.formattedAddress!
     }
     
     func resultsController(resultsController: GMSAutocompleteResultsViewController,

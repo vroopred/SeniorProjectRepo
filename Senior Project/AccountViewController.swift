@@ -22,9 +22,9 @@ class AccountViewController: UITableViewController {
         super.viewDidLoad()
         
         stories = [
-            Story(title: "First Story", author: "Anusha P.", content: "This is story 1 content. This is story 1 content. This is story 1 content. This is story       1 content. This is story 1 content. This is story 1 content. ", location: "Fremont, CA", longitude: 34.324, latitude: -111.32, date: NSDate()),
-            Story(title: "Second Story", author: "Anusha P.", content: "This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. ", location: "San Luis Obispo, CA", longitude: 34.324, latitude: -111.32, date: NSDate()),
-            Story(title: "Third Story", author: "Anusha P.", content: "This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. ", location: "San Francisco, CA", longitude: 34.324, latitude: -111.32, date: NSDate())
+            Story(title: "First Story", author: "Anusha P.", content: "This is story 1 content. This is story 1 content. This is story 1 content. This is story       1 content. This is story 1 content. This is story 1 content. ", location: "Fremont, CA", longitude: 34.324, latitude: -111.32, address: "saljds", date: NSDate()),
+            Story(title: "Second Story", author: "Anusha P.", content: "This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. This is story 2 content. ", location: "San Luis Obispo, CA", longitude: 34.324, latitude: -111.32, address: "saljds",date: NSDate()),
+            Story(title: "Third Story", author: "Anusha P.", content: "This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. This is story 3 content. ", location: "San Francisco, CA", longitude: 34.324, latitude: -111.32, address: "saljds", date: NSDate())
         ]
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
