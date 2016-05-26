@@ -84,9 +84,11 @@ class HomeViewController: UITableViewController{
       cell.userName.text = self.stories[indexPath.row].author
       
       cell.location.text = self.stories[indexPath.row].location
+      cell.numLikes.text = String(self.stories[indexPath.row].likes) + " Likes"
       
       cell.storyText.text = self.stories[indexPath.row].content.trunc(100)
       cell.timeAgoSinceDate.text = timeAgo
+      
     
       
       return cell

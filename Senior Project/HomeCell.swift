@@ -15,6 +15,7 @@ class HomeCell: UITableViewCell {
    @IBOutlet weak var location: UILabel!
    @IBOutlet weak var storyText: UITextView!
    @IBOutlet weak var timeAgoSinceDate: UILabel!
+   @IBOutlet weak var numLikes: UILabel!
    
     override func awakeFromNib() {
         super.awakeFromNib()
