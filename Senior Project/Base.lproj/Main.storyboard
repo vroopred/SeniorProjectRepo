@@ -116,16 +116,16 @@
         <scene sceneID="YWW-vu-ELA">
             <objects>
                 <tableViewController id="Beg-Vw-Y6Y" customClass="HomeViewController" customModule="Senior_Project" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="163" sectionHeaderHeight="28" sectionFooterHeight="28" id="9ZQ-6e-ATz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="177" sectionHeaderHeight="28" sectionFooterHeight="28" id="9ZQ-6e-ATz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HomeCell" rowHeight="163" id="bMS-cV-u5f" customClass="HomeCell" customModule="Senior_Project" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="163"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HomeCell" rowHeight="177" id="bMS-cV-u5f" customClass="HomeCell" customModule="Senior_Project" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="177"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="bMS-cV-u5f" id="Axw-fm-9dR">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="162"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="176"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Eg-aB-ljw">
@@ -157,8 +157,15 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hCU-dU-Zb0">
+                                            <rect key="frame" x="13" y="130" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Ago Since Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9WU-iq-U82">
-                                            <rect key="frame" x="13" y="133" width="133" height="21"/>
+                                            <rect key="frame" x="13" y="147" width="133" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -168,6 +175,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="location" destination="WUI-qC-wyh" id="MQo-Nu-7JP"/>
+                                    <outlet property="numLikes" destination="hCU-dU-Zb0" id="Dmq-32-WLv"/>
                                     <outlet property="storyText" destination="OBk-uj-Kt1" id="yMv-mj-vxX"/>
                                     <outlet property="storyTitle" destination="8Eg-aB-ljw" id="qUz-FH-vLU"/>
                                     <outlet property="timeAgoSinceDate" destination="9WU-iq-U82" id="dEW-JU-A8y"/>
@@ -252,6 +260,7 @@
                     <navigationItem key="navigationItem" id="wg3-C2-W6a"/>
                     <connections>
                         <outlet property="author" destination="A2X-o1-MrX" id="UWu-k7-Eo5"/>
+                        <outlet property="likeButton" destination="BH4-dg-1Ct" id="etw-Br-hQ6"/>
                         <outlet property="location" destination="L2v-2i-lnS" id="fLJ-wh-zcL"/>
                         <outlet property="storyText" destination="pFn-oL-A2h" id="dyN-zQ-Fh2"/>
                         <outlet property="storyTitle" destination="fwl-PE-FLN" id="nlS-Pg-XOd"/>
@@ -576,7 +585,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProfileCell" rowHeight="171" id="54Y-M2-TT7" customClass="ProfileCell" customModule="Senior_Project" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="280" width="375" height="171"/>
+                                <rect key="frame" x="0.0" y="216" width="375" height="171"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="54Y-M2-TT7" id="59l-Mg-jut">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="170"/>
