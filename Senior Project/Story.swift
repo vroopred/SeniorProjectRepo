@@ -13,14 +13,18 @@ class Story {
    var author : String
    var content : String
    var location : String
+   var longitude : Double
+   var latitude : Double
    var date : NSDate
    var likes : Int
    
-   init(title: String, author: String, content : String, location : String, date: NSDate) {
+    init(title: String, author: String, content : String, location : String, longitude : Double, latitude : Double, date: NSDate) {
       self.title = title
       self.author = author
       self.content = content
       self.location = location
+      self.longitude = longitude
+      self.latitude = latitude
       self.date = date
       self.likes = 0
    }
@@ -30,6 +34,8 @@ class Story {
       author = snapshot.value["author"] as! String
       content = snapshot.value["content"] as! String
       location = snapshot.value["location"] as! String
+      longitude = snapshot.value["longitude"] as! Double
+      latitude = snapshot.value["latitude"] as! Double
       likes = snapshot.value["likes"] as! Int
       let dateInterval = snapshot.value["date"] as! String
       let interval = NSTimeInterval((dateInterval as NSString).floatValue)
@@ -42,6 +48,8 @@ class Story {
          "author": author,
          "content": content,
          "location": location,
+         "longitude": longitude,
+         "latitude": latitude,
          "likes": 0,
          "date" : NSString(format: "%f", date.timeIntervalSince1970)
       ]
